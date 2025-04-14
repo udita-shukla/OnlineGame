@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Land - Play & Enjoy!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(60deg, #3af171, #7e60f5, #f95a52);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: black;
+            color: #f95a52;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .navbar h3 {
+            margin: 5px 0 15px;
+            font-size: 18px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            background: #fff;
+            padding: 15px 30px;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+
+        li:hover {
+            background: #f95a52;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .imgbox {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .imgbox img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .imgbox img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            .navbar h1 {
+                font-size: 22px;
+            }
+            .navbar h3 {
+                font-size: 16px;
+            }
+            li {
+                padding: 10px 20px;
+            }
+            .imgbox img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <h1>🎮 Welcome to Game Land! 🎮</h1>
+        <h3>Stay connected for exciting new games!</h3>
+    </div>
+
+    <ul>
+        <li><a href="d.html">❌⭕ Play Tic Tac Toe</a></li>
+        <li><a href="b.html">🐍 Play Snake Xenzia</a></li>
+        <li><a href="a.html">✊✌️ Play Rock-Paper-Scissors</a></li>
+        <li><a href="c.html">🦖 Explore Dinosaur Land</a></li>
+    </ul>
+
+    <div class="imgbox">
+        <img src="https://i.pinimg.com/originals/3d/6e/50/3d6e504b348940a00e33447b4805f284.gif" alt="Game Character 1">
+        <img src="https://media.tenor.com/rYBgjsA-wZYAAAAi/doraemon.gif" alt="Doraemon GIF">
+        <img src="https://media.tenor.com/BpKxlZSGHrcAAAAi/doraemon.gif" alt="Doraemon GIF">
+        <img src="https://media.tenor.com/7SE3IKEub60AAAAi/shinchan.gif" alt="Shinchan GIF">
+    </div>
+
+</body>
+</html>
