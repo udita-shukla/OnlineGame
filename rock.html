@@ -1,0 +1,237 @@
+ROCK PAPER SC. code
+	
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title> Rock Paper and Scissor</title>
+	<style>
+	
+	* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+	}
+	nav{
+	background-color: rgb(37, 9, 37);
+	color: rgb(255, 18, 18);
+	height: 65px;
+	
+	font-size: 27px;
+	display: flex;
+	align-items: center;
+	
+	padding: 0 12px;
+	font-family: 'Roboto', sans-serif;
+	}
+	.gameContainer {
+	display: flex;
+	justify-content: center;
+	/*margin-top: 65px;*/
+	height: 150vw;
+	
+	align-items:self-start;
+	background :linear-gradient(60deg,#ff6e4d,#fd0000,#061fff,#120f1d) ;
+	background-size: 150% 150%;
+	animation: color 10s ease-in-out infinite;
+	}
+	@keyframes color {
+	0% {
+	background-position: 0 50%;
+	}
+	
+	30% {
+	background-position: 100% 50%;
+	}
+	10% {
+	background-position: 0 50%;
+	}
+	}
+	a{
+	color: tomato;
+	}
+	
+	::selection {
+	color: #8fffa0;
+	background-color: #1adec7;
+	}
+	.container {
+	padding: 2rem 7rem;
+	border-radius: 14px;
+	background: linear-gradient(60deg,#32fb6e,#dcd6f6,#f95a52);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+	}
+	.result_images {
+	display: flex;
+	column-gap: 7rem;
+	}
+	.container.start .user_result {
+	transform-origin: left;
+	animation: userShake 0.7s ease infinite;
+	}
+	@keyframes userShake {
+	50% {
+	transform: rotate(10deg);
+	}
+	}
+	
+	.container.start .cpu_result {
+	transform-origin: right;
+	animation: cpuShake 0.7s ease infinite;
+	}
+	@keyframes cpuShake {
+	50% {
+	transform: rotate(-10deg);
+	}
+	}
+	.result_images img {
+	width: 100px;
+	}
+	.user_result img {
+	transform: rotate(90deg);
+	}
+	.cpu_result img {
+	transform: rotate(-90deg) rotateY(180deg);
+	}
+	.result {
+	text-align: center;
+	font-size: 2rem;
+	color: #7d2ae8;
+	margin-top: 1.5rem;
+	}
+	
+	.option_image img {
+	width: 50px;
+	}
+	.option_images {
+	display: flex;
+	align-items: center;
+	margin-top: 2.5rem;
+	justify-content: space-between;
+	}
+	.container.start .option_images {
+	pointer-events: none;
+	}
+	.option_image {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	opacity: 0.5;
+	cursor: pointer;
+	transition: opacity 0.3s ease;
+	}
+	.option_image:hover {
+	opacity: 1;
+	}
+	.option_image.active {
+	opacity: 1;
+	}
+	.option_image img {
+	pointer-events: none;
+	}
+	.option_image p {
+	color: #7d2ae8;
+	font-size: 1.235rem;
+	margin-top: 1rem;
+	pointer-events: none;
+	}
+	
+	
+	</style>
+	</head>
+	<body>
+	<nav>
+	<ul>
+	<li>My Rock Paper and Scissor</li>
+	<a href="D:\Udita\html\index.4.html ">Wanna Play More !!</a> 
+
+	
+	</ul>
+	
+	</nav>
+	<div class="gameContainer">
+	<div class="container">
+	<div class="result_field">
+	<div class="result_images">
+	<span class="user_result">
+	<img src="https://c1.wallpaperflare.com/preview/246/454/433/punch-fist-hand-strength.jpg" alt="" />
+
+	</span>
+	<span class="cpu_result">
+	<img src="https://c1.wallpaperflare.com/preview/246/454/433/punch-fist-hand-strength.jpg" alt="" />
+
+	</span>
+	</div>
+	<div class="result"> Are you ready to play!</div>
+	</div>
+	
+	
+	<div class="option_images">
+	<span class="option_image">
+	<img src="https://c1.wallpaperflare.com/preview/246/454/433/punch-fist-hand-strength.jpg" alt="" />
+
+	<p>Rock</p>
+	</span>
+	<span class="option_image">
+	<img src="https://static.vecteezy.com/system/resources/previews/012/604/088/non_2x/palm-hand-gesture-on-left-hand-for-concept-of-rock-paper-scissors-game-isolated-on-white-background-free-photo.jpeg" alt="" />
+
+	<p>Paper</p>
+	</span>
+	<span class="option_image">
+	<img src="https://static.vecteezy.com/system/resources/previews/011/222/149/original/close-up-asian-female-hand-in-scissors-gesture-number-two-victorious-gesture-sign-finger-arm-and-hand-isolated-on-a-white-background-copy-space-symbol-free-png.png" alt="" />
+
+	<p>Scissors</p>
+	</span>
+	</div>
+	</section>
+	<script>
+	const gameContainer = document.querySelector(".container"),
+	userResult = document.querySelector(".user_result img"),
+	cpuResult = document.querySelector(".cpu_result img"),
+	result = document.querySelector(".result"),
+	optionImages = document.querySelectorAll(".option_image");
+	optionImages.forEach((image, index) => {
+	image.addEventListener("click", (e) => {
+	image.classList.add("active");
+	
+	userResult.src = cpuResult.src = "images/rock.png";
+	result.textContent = "Wait...";
+	optionImages.forEach((image2, index2) => {
+	index !== index2 && image2.classList.remove("active");
+	});
+	
+	gameContainer.classList.add("start");
+	let time = setTimeout(() => {
+	gameContainer.classList.remove("start");
+	let imageSrc = e.target.querySelector("img").src;
+	userResult.src = imageSrc;
+	let randomNumber = Math.floor(Math.random() * 3);
+	let cpuImages = ["images/rock.png", "images/paper.png", "images/scissors.png"];
+	cpuResult.src = cpuImages[randomNumber]
+	let cpuValue = ["R", "P", "S"][randomNumber];
+	let userValue = ["R", "P", "S"][index];
+	let outcomes = {
+	RR: "Draw",
+	RP: "Cpu",
+	RS: "User",
+	PP: "Draw",
+	PR: "User",
+	PS: "Cpu",
+	SS: "Draw",
+	SR: "Cpu",
+	SP: "User",
+	};
+	let outComeValue = outcomes[userValue + cpuValue];
+	result.textContent = userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
+	}, 2500);
+	})
+	})
+	
+	</script>
+	</body>
+	</html>
+	
+
