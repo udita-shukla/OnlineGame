@@ -188,49 +188,56 @@ ROCK PAPER SC. code
 	</div>
 	</section>
 	<script>
-	const gameContainer = document.querySelector(".container"),
-	userResult = document.querySelector(".user_result img"),
-	cpuResult = document.querySelector(".cpu_result img"),
-	result = document.querySelector(".result"),
-	optionImages = document.querySelectorAll(".option_image");
-	optionImages.forEach((image, index) => {
-	image.addEventListener("click", (e) => {
-	image.classList.add("active");
-	
-	userResult.src = cpuResult.src = "images/rock.png";
-	result.textContent = "Wait...";
-	optionImages.forEach((image2, index2) => {
-	index !== index2 && image2.classList.remove("active");
-	});
-	
-	gameContainer.classList.add("start");
-	let time = setTimeout(() => {
-	gameContainer.classList.remove("start");
-	let imageSrc = e.target.querySelector("img").src;
-	userResult.src = imageSrc;
-	let randomNumber = Math.floor(Math.random() * 3);
-	let cpuImages = ["images/rock.png", "images/paper.png", "images/scissors.png"];
-	cpuResult.src = cpuImages[randomNumber]
-	let cpuValue = ["R", "P", "S"][randomNumber];
-	let userValue = ["R", "P", "S"][index];
-	let outcomes = {
-	RR: "Draw",
-	RP: "Cpu",
-	RS: "User",
-	PP: "Draw",
-	PR: "User",
-	PS: "Cpu",
-	SS: "Draw",
-	SR: "Cpu",
-	SP: "User",
-	};
-	let outComeValue = outcomes[userValue + cpuValue];
-	result.textContent = userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
-	}, 2500);
-	})
-	})
-	
-	</script>
+const container = document.querySelector(".container");
+const resultMsg = document.querySelector(".result");
+const userImg = document.querySelector(".user_result img");
+const cpuImg = document.querySelector(".cpu_result img");
+const options = document.querySelectorAll(".option_image");
+
+const choices = ["R", "P", "S"];
+const imgPaths = {
+  R: "images/rock.png",
+  P: "images/paper.png",
+  S: "images/scissors.png"
+};
+
+const outcomes = {
+  RR: "It's a Draw!",
+  RP: "CPU Wins!",
+  RS: "You Win!",
+  PP: "It's a Draw!",
+  PR: "You Win!",
+  PS: "CPU Wins!",
+  SS: "It's a Draw!",
+  SR: "CPU Wins!",
+  SP: "You Win!"
+};
+
+options.forEach((opt, idx) => {
+  opt.onclick = () => {
+    options.forEach(o => o.classList.remove("active"));
+    opt.classList.add("active");
+
+    userImg.src = cpuImg.src = imgPaths.R;
+    resultMsg.textContent = "Deciding...";
+    container.classList.add("start");
+
+    setTimeout(() => {
+      container.classList.remove("start");
+
+      const userChoice = choices[idx];
+      const cpuChoice = choices[Math.floor(Math.random() * 3)];
+
+      userImg.src = opt.querySelector("img").src;
+      cpuImg.src = imgPaths[cpuChoice];
+
+      const outcomeKey = userChoice + cpuChoice;
+      resultMsg.textContent = outcomes[outcomeKey];
+    }, 1500);
+  };
+});
+</script>
+
 	</body>
 	</html>
 	
