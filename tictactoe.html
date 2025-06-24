@@ -218,6 +218,11 @@ text-decoration-color: rgb(86, 9, 9);
 <script>
 console.log("Welcome to Tic Tac Toe");
 
+// Audio files
+const music = new Audio("music.mp3");
+const turnSound = new Audio("ting.mp3");
+const gameOverSound = new Audio("gameover.mp3");
+
 let currentTurn = "X";
 let gameOver = false;
 
@@ -251,6 +256,7 @@ const checkWinner = () => {
       const line = document.querySelector(".line");
       line.style.transform = `translate(${x}vw, ${y}vw) rotate(${angle}deg)`;
       line.style.width = "20vw";
+      gameOverSound.play();
     }
   });
 };
@@ -262,6 +268,7 @@ boxes.forEach(box => {
   box.addEventListener("click", () => {
     if (boxText.innerText === "" && !gameOver) {
       boxText.innerText = currentTurn;
+      turnSound.play();
       checkWinner();
       if (!gameOver) {
         currentTurn = switchTurn();
@@ -282,9 +289,11 @@ document.getElementById("reset").addEventListener("click", () => {
 });
 
 
-
 </script>
 </body>
 
 </html>
+
+
+
 
