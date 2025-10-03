@@ -217,63 +217,72 @@ text-decoration-color: rgb(86, 9, 9);
 </div>
 <script>
 console.log("Welcome to Tic Tac Toe");
-
 let currentTurn = "X";
 let gameOver = false;
+// Function to switch turns
+const switchTurn = () => (currentTurn === "X" ? "0" : "X");
 
-const boxes = document.querySelectorAll(".box");
-const info = document.querySelector(".info");
-const line = document.querySelector(".line");
-const img = document.querySelector(".imgbox img");
-
-// Winning patterns: [cell1, cell2, cell3]
-const winPatterns = [
-  [0,1,2],[3,4,5],[6,7,8],
-  [0,3,6],[1,4,7],[2,5,8],
-  [0,4,8],[2,4,6]
-];
-
-function checkWinner(){
-  for(const [a,b,c] of winPatterns){
-    if(boxes[a].innerText && boxes[a].innerText === boxes[b].innerText && boxes[a].innerText === boxes[c].innerText){
-      info.innerText = `${boxes[a].innerText} Won 🎉`;
+// Function to check if someone has won
+const checkWinner = () => {
+  const boxTexts = document.getElementsByClassName("boxtext");
+  const winPatterns = [
+    [0, 1, 2, 5, 5, 0],
+    [3, 4, 5, 5, 15, 0],
+    [6, 7, 8, 5, 25, 0],
+    [0, 3, 6, -5, 15, 90],
+    [1, 4, 7, 5, 15, 90],
+    [2, 5, 8, 15, 15, 90],
+    [0, 4, 8, 5, 15, 45],
+    [2, 4, 6, 5, 15, 135],
+  ];
+  winPatterns.forEach(pattern => {
+    const [a, b, c, x, y, angle] = pattern;
+    if (
+      boxTexts[a].innerText &&
+      boxTexts[a].innerText === boxTexts[b].innerText &&
+      boxTexts[a].innerText === boxTexts[c].innerText
+    ) {
+      document.querySelector(".info").innerText = `${boxTexts[a].innerText} Won 🎉`;
       gameOver = true;
-      img.style.width = "200px";
-      line.style.width = "20vw"; // simple visual line
-      return;
+      document.querySelector(".imgbox img").style.width = "200px";
+      const line = document.querySelector(".line");
+      line.style.transform = `translate(${x}vw, ${y}vw) rotate(${angle}deg)`;
+      line.style.width = "20vw";
     }
-  }
-  if([...boxes].every(b=>b.innerText)) info.innerText = "Draw!";
-}
+  });
+};
 
-// Main click logic
-boxes.forEach(box=>{
-  box.addEventListener("click", ()=>{
-    if(!box.innerText && !gameOver){
-      box.innerText = currentTurn;
+// Main game logic
+const boxes = document.querySelectorAll(".box");
+boxes.forEach(box => {
+  const boxText = box.querySelector(".boxtext");
+  box.addEventListener("click", () => {
+    if (boxText.innerText === "" && !gameOver) {
+      boxText.innerText = currentTurn;
       checkWinner();
-      if(!gameOver){
-        currentTurn = currentTurn==="X"?"0":"X";
-        info.innerText = `Turn for ${currentTurn}`;
+      if (!gameOver) {
+        currentTurn = switchTurn();
+        document.querySelector(".info").innerText = `Turn for ${currentTurn}`;
       }
     }
   });
 });
 
-// Reset button
-document.getElementById("reset").addEventListener("click", ()=>{
-  boxes.forEach(b=>b.innerText="");
+// Reset button logic
+document.getElementById("reset").addEventListener("click", () => {
+  document.querySelectorAll(".boxtext").forEach(box => (box.innerText = ""));
   currentTurn = "X";
   gameOver = false;
-  info.innerText = `Turn for ${currentTurn}`;
-  line.style.width = "0";
-  img.style.width = "0";
+  document.querySelector(".info").innerText = `Turn for ${currentTurn}`;
+  document.querySelector(".line").style.width = "0vw";
+  document.querySelector(".imgbox img").style.width = "0px";
 });
 </script>
-
 </body>
 
 </html>
+
+
 
 
 
